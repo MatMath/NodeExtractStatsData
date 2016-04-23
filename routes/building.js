@@ -9,4 +9,11 @@ router.get('/', function(req, res, next) {
   res.render("building", whatToSendBack);
 });
 
+router.get('/list.json', function(req, res, next) {
+  var whatToSendBack = {
+  	"title":"Triplex Json"
+  }
+  res.json(whatToSendBack);
+});
+
 module.exports = router;
