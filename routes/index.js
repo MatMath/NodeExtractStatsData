@@ -4,7 +4,13 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+	var data = {
+		title: 'Mathieu',
+		quality: "Awesomeness",
+		location: req.location
+	};
+
+	res.render('index', data);
 });
 
 module.exports = router;

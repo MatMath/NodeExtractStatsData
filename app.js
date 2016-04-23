@@ -8,8 +8,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 
+// File load
+var location = require('./middleware/location');
+
 var routes = require('./routes/index');
 var users = require('./routes/user');
+var buildings = require('./routes/building');
 
 var app = express();
 
@@ -35,8 +39,16 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+// Middleware
+app.use(location);
+
+// Routing
 app.use('/users', users);
+app.use('/buildings', buildings);
+app.use('/users2', users);
+app.use('/users3', users);
+app.use('/', routes);
+
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

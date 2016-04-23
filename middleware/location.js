@@ -8,4 +8,4 @@ var location = function location(req, res, next) {
 	next();
 }
 
-module.export = location;
+module.exports = location;
