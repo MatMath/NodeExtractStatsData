@@ -1,5 +1,4 @@
 
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -15,6 +14,7 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 var buildings = require('./routes/building');
 var banknames = require('./routes/bankname');
+var intrates = require('./routes/intrate')
 
 var app = express();
 
@@ -47,7 +47,7 @@ app.use(location);
 app.use('/users', users);
 app.use('/buildings', buildings);
 app.use('/banknames', banknames);
-app.use('/users3', users);
+app.use('/intrates', intrates);
 app.use('/', routes);
 
 
