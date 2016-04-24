@@ -37,10 +37,16 @@ router.get('/:hood', function(req, res, next) {
 	// Step1: Get the Variable out of the route.
 	// Step2: Get the data of that URL.+ get the data needed.
 
-	// TODO: Get the neighborhood from the URL info. 
-
 	// var neighborhood = "N00151";
 	var neighborhood = req.params.hood;
+	if (!/^[A-Za-z0-9]+$/.test(neighborhood)) {
+		res.status(400);
+		return res.json({
+			"message":"Invalid Neighborhood",
+			"status":400
+		});
+	}
+
 	// neighborhood are selected from = http://static.quandl.com/zillow/hood_codes.csv
 	var url = "https://www.quandl.com/api/v3/datasets/ZILL/" + neighborhood + "_RMP.json?api_key=" + process.env.QUANDL_API_KEY;
 	request(url, function(err, response, body) {
