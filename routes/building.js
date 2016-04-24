@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/* GET Building listing. */
 router.get('/', function(req, res, next) {
   var whatToSendBack = {
   	"title":"Triplex"
@@ -10,9 +10,24 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/list.json', function(req, res, next) {
-  var whatToSendBack = {
-  	"title":"Triplex Json"
-  }
+  var whatToSendBack = [{
+  	"Title":"House",
+  	"Appartment":1,
+  	"RevenuPerApp":0,
+  },{
+  	"Title":"Duplex",
+  	"Appartment":2,
+  	"RevenuPerApp":0,
+  },{
+  	"Title":"Triplex",
+  	"Appartment":3,
+  	"RevenuPerApp":0,
+  },{
+  	"Title":"Fourplex",
+  	"Appartment":4,
+  	"RevenuPerApp":0,
+  }];
+
   res.json(whatToSendBack);
 });
 

@@ -14,6 +14,7 @@ var location = require('./middleware/location');
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var buildings = require('./routes/building');
+var banknames = require('./routes/bankname');
 
 var app = express();
 
@@ -45,7 +46,7 @@ app.use(location);
 // Routing
 app.use('/users', users);
 app.use('/buildings', buildings);
-app.use('/users2', users);
+app.use('/banknames', banknames);
 app.use('/users3', users);
 app.use('/', routes);
 
