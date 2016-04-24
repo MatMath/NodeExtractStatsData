@@ -4,21 +4,21 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var fs = require('fs');
 
 /* GET Bank listing. */
 router.get('/', function(req, res, next) {
 	// // ZILL will give the list of all the type of Database (1M+) that exist on that server. ex: 
 	// https://www.quandl.com/data/ZILL/documentation/documentation
 	// The route here will return 2 thing:
-	// 1 - The data if well formatted. --> Return with the building the proper Average rent price.
-	// 2 - a Info page on how to call it with arguments. 
-	// https://www.quandl.com/data/ZILL/documentation/documentation
-	// http://static.quandl.com/zillow/city_codes.csv  --> To Get the area and the code.
+	// 1 - The data if well formatted. --> Return with the building the proper Average rent price. "RMP"
 
 	// Step1: Get the Variable out of the route.
 	// Step2: Get the data of that URL.+ get the data needed.
+
+	// TODO: Get the neighborhood from the URL info. 
 	var neighborhood = "N00151";
-	// neighborhood sre selected from = http://static.quandl.com/zillow/hood_codes.csv
+	// neighborhood are selected from = http://static.quandl.com/zillow/hood_codes.csv
 	var url = "https://www.quandl.com/api/v3/datasets/ZILL/" + neighborhood + "_RMP.json?api_key=" + process.env.QUANDL_API_KEY;
 	request(url, function(err, response, body) {
 		var dataBack = JSON.parse(body);
@@ -33,11 +33,26 @@ router.get('/', function(req, res, next) {
 
 });
 
+
+// 2 - a Info page on how to call it with arguments. 
+// https://www.quandl.com/data/ZILL/documentation/documentation
+// http://static.quandl.com/zillow/city_codes.csv  --> To Get the area and the code.
 router.get('/info', function(req, res, next) {
   var whatToSendBack = {
   	"documentation":"https://www.quandl.com/data/ZILL/documentation/documentation"
   }
   res.render("rentPriceInfo", whatToSendBack);
+});
+
+// TODO: Fetch the hood_codes.csv and return it as JSON.
+router.get('/hood_codes.json', function(req, res, next) {
+ // With FS:
+  fs.readFile('./public/json/hood_codes.json', function (err, data) {
+    if (err) {
+      throw err;
+    }
+	res.json(JSON.parse(data.toString()));
+  });
 });
 
 module.exports = router;
