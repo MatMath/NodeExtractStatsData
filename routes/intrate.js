@@ -11,8 +11,16 @@ router.get('/', function(req, res, next) {
 	// - 30-Year Conventional Mortgage Rate FMAC/WRMORTG
 	// Prices of Houses like:
 	// - House Price Index - New York , FMAC/HPI_NY  --> https://www.quandl.com/api/v3/datasets/FMAC/HPI_NY.json?api_key=
-	var url = 'https://www.quandl.com/api/v3/datasets.json?database_code=FMAC&per_page=2&sort_by=id&page=1&api_key=' + process.env.QUANDL_API_KEY;
-
+	// var url = 'https://www.quandl.com/api/v3/datasets.json?database_code=FMAC&per_page=2&sort_by=id&page=1&api_key=' + process.env.QUANDL_API_KEY;
+	res.interestRate = [];
+	// I made it as an array because it would be easier to make 4 different call asynch and still write at the right location (attemp)
+	var urls = [
+		"https://www.quandl.com/api/v3/datasets/FMAC/5US.json?api_key=",
+		"https://www.quandl.com/api/v3/datasets/FMAC/15US.json?api_key=",
+		"https://www.quandl.com/api/v3/datasets/FMAC/30US.json?api_key=",
+		"https://www.quandl.com/api/v3/datasets/FMAC/WRMORTG.json?api_key="
+	];
+	var numberOfCalls = 0;
 	var callback = function(error, response, body) {
 		if (error || response.statusCode >= 400) {
 			return next(error || {
@@ -20,10 +28,24 @@ router.get('/', function(req, res, next) {
 			});
 		}
 		var data = JSON.parse(body);
-		res.json(data);
+		var simplifiedData = {
+			"DB":body.dataset_code,
+			"name":body.name,
+			"latestIntRate":body.data[0][1]
+		};
+		res.interestRate.push(simplifiedData);
+		
+		if (completed_request == urls.length) {
+	        res.json(res.interestRate);
+	    }
+		
 	};
 
-	request.get(url, callback);
+	for (var url in urls) {
+	  request.get(url + process.env.QUANDL_API_KEY, callback);
+	}
+
+	// request.get(url, callback);
 });
 
 module.exports = router;
