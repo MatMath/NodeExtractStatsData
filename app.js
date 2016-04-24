@@ -14,7 +14,8 @@ var routes = require('./routes/index');
 var users = require('./routes/user');
 var buildings = require('./routes/building');
 var banknames = require('./routes/bankname');
-var intrates = require('./routes/intrate')
+var intrates = require('./routes/intrate');
+var medRentOfArea = require('./routes/medRentOfArea');
 
 var app = express();
 
@@ -48,6 +49,7 @@ app.use('/users', users);
 app.use('/buildings', buildings);
 app.use('/banknames', banknames);
 app.use('/intrates', intrates);
+app.use('/medRentOfArea', medRentOfArea);
 app.use('/', routes);
 
 
