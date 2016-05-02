@@ -19,4 +19,4 @@ CMD [ "npm", "start" ]
 # How to run with Docker: https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 # The app need a API Key, as a Env Var, so pass it 
 # This should run the npm start so the app will run.
-# docker run -p 49160:3000 -d <your username>/node-web-app -e QUANDL_API_KEY="YouAPIKeyHere"
+# docker run -p 49160:3000 -d -e QUANDL_API_KEY=YouAPIKeyHere <yourUsername>/node-web-app 
