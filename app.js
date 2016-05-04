@@ -11,9 +11,7 @@ var exphbs  = require('express-handlebars');
 var location = require('./middleware/location');
 
 var routes = require('./routes/index');
-var users = require('./routes/user');
 var buildings = require('./routes/building');
-var banknames = require('./routes/bankname');
 var intrates = require('./routes/intrate');
 var medRentOfArea = require('./routes/medRentOfArea');
 
@@ -45,9 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(location);
 
 // Routing
-app.use('/users', users);
 app.use('/buildings', buildings);
-app.use('/banknames', banknames);
 app.use('/intrates', intrates);
 app.use('/medRentOfArea', medRentOfArea);
 app.use('/', routes);
