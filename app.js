@@ -22,13 +22,26 @@ app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
 
 // view engine setup
-
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
   partialsDir: ['views/partials/']
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
+
+app.use(function(req, res, next) {
+  if (!process.env.QUANDL_API_KEY) {
+      /// catch early if we are missing  the Env Variable API Key
+      res.status(500);
+      res.render('error', {
+          message: "Pls restart the server with the API Key of Quandl",
+          error: {},
+          title: 'Missing API Key'
+      });
+  } else {
+      next();
+  }
+});
 
 // app.use(favicon(__dirname + '/public/img/favicon.ico'));
 app.use(logger('dev'));
