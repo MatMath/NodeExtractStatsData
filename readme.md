@@ -1,6 +1,7 @@
-# ${1:NodeExtractStatsData}
+# NodeExtractStatsData
 
 ## Description
+
 This project is based on the Yeoman build with express. But also mainly to learn more about server side Node. This server section will serve specific data for the Font App. Some data might be static, some other data will get fetch from different API aroudn the web. 
 Data like: 
 - Building type --> Static file.
@@ -10,9 +11,10 @@ Data like:
 Simple calculation and display will be done on the client side (not this app). 
 
 ## Installation
+
 Get a API Key from www.quandl.com
 Use a Docker instance and run the dockerfile inside:
-docker run -p 49160:3000 -d -e QUANDL_API_KEY=YouAPIKeyHere your-node-web-app-compiled-name
+`docker run -p 49160:3000 -d -e QUANDL_API_KEY=YouAPIKeyHere your-node-web-app-compiled-name`
 
 ## Usage
 
