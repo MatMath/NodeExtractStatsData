@@ -15,7 +15,7 @@ Simple calculation and display will be done on the client side (not this app).
 Get a API Key from www.quandl.com
 Use a Docker instance and run the dockerfile inside:
 `docker run -p 49160:3000 -d -e QUANDL_API_KEY=YouAPIKeyHere your-node-web-app-compiled-name`
-Or you can run it locally with npm install / gulp develop
+Or you can run it locally with npm install / gulp default
 
 ## Usage
 
