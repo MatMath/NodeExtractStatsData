@@ -1,4 +1,14 @@
+ <h1>{{title}}</h1>
+ <p>
+ Welcome to the {{title}}, <br />
+ Your current known location is: {{location.latitude}}
+ </p>
+ <div>
+ 	{{#each possibleRoutes}}
+ 	<span><strong>URL:</strong> {{this.url}}</span>
+ 	<br />
+ 	<span><strong>Description:</strong> {{this.description}}</span>
+ 	<hr>
+ 	{{/each}}
+ </div>
 
-
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}} {{quality}} level is {{location.latitude}}</p>
