@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
+var cors = require('cors');
 
 // File load
 var location = require('./middleware/location');
@@ -28,6 +29,8 @@ app.engine('handlebars', exphbs({
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
+
+app.use(cors());
 
 app.use(function(req, res, next) {
   if (!process.env.QUANDL_API_KEY) {
